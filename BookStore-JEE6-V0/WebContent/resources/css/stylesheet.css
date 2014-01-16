@@ -1,0 +1,29 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	font-family: verdana;
+  font-size: 11px;
+}
+div#top {
+  padding: 10px;
+  background:#d5e9fe;
+  border:1px solid #b0d2f6;
+  -moz-border-radius:15px;
+  margin:5px; 
+}
+
+div#left {
+  float: left;
+  padding: 10px;
+  background:#d5e9fe;
+  border:1px solid #b0d2f6;
+  -moz-border-radius:15px;
+  margin:5px; 
+}
+
+div#content {
+  overflow: hidden;
+  padding: 10px;
+}
+

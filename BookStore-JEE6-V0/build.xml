@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project  default="wsimport" basedir=".">
+  <property name="src" value="${basedir}/src"/>
+  <property name="wsdl" value="http://localhost:8080/BookWebServiceService/BookWebService?wsdl"/>
+  <path id="jax-ws.classpath">
+    <fileset dir="/opt/jee-20132014/glassfish4/glassfish/modules/">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+	<taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport" classpathref="jax-ws.classpath"/>
+  <target name="wsimport">  
+  	<echo message="Hello, world"/>
+    <echo message="Hello, world"/>
+    <echo message="Hello, world"/>
+    <echo message="Hello, world"/>
+    <echo message="Hello, world"/>
+    <echo message="Hello, world"/>
+    <echo message="Hello, world"/>
+    <wsimport
+        wsdl="${wsdl}"
+        destdir="${src}"
+        keep="true"
+        verbose="on"
+        wsdlLocation="${wsdl}"
+        package="test.ws"/>
+  </target>
+</project>

@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:dgc="http://java.sun.com/jsf/composite/galland">
+  <h:graphicImage name="logo.png" library="images" alt="" width="179" height="76" />
+  <div style="float: right;">
+    <h:form id="topForm">
+      <h:panelGrid columns="2">
+        <h:panelGroup>
+          <h:outputText value="Votre panier: " />
+          <h:outputText value="#{clientController.order.size}" />
+        </h:panelGroup>
+        <h:panelGroup rendered="#{clientController.loggedIn}">
+          <h:outputText value="#{clientControlller.client.login}" />
+          <br/>
+          <h:commandLink action="#{clientController.doLogout}" value="#{strings['button.logout']}" />
+          <br/>
+          <h:commandLink action="account" value="Votre compte" />
+        </h:panelGroup>
+        <h:panelGroup rendered="#{not clientController.loggedIn}">
+          <h:commandLink action="login" value="#{strings['button.login']}" immediate="true" />
+        </h:panelGroup>
+        <h:commandLink action="cart">Voir votre panier</h:commandLink>
+      </h:panelGrid>
+    </h:form>
+  </div>
+</ui:composition>

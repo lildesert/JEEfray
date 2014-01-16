@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13618853170180" configfile="/BookStore-JEE6-Final/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="122" y="178" id="pf13618892494160" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13618892494161" path="login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="338" y="178" id="pf13618892494162" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13618892494161 pf13618892494163" path="/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="946" id="pf13618892494164" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13618892494163 pf13620718491732 pf13620718491733 pf13624786536530 pf13690492717670 pf13690492717671 pf13875518097180" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="category.xhtml" x="338" y="562" id="pf13619919164201" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf13620718491732" path="/category.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="book.xhtml" x="338" y="946" id="pf13620714036121" referenceLink="//@navigationRule.1/@navigationCase.2/@toViewId|" inlinks="pf13620718491733" path="/book.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cart.xhtml" x="338" y="1330" id="pf13624786536531" referenceLink="//@navigationRule.1/@navigationCase.3/@toViewId|" inlinks="pf13624786536530" path="/cart.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="1714" id="pf13690492717672" referenceLink="//@navigationRule.1/@navigationCase.4/@toViewId|" inlinks="pf13690492717670" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="account.xhtml" id="pf13690492717673" referenceLink="//@navigationRule.1/@navigationCase.6/@toViewId|" inlinks="pf13690492717671" path="/account.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="order.xhtml" id="pf13875518097181" referenceLink="//@navigationRule.1/@navigationCase.6/@toViewId|" inlinks="pf13875518097180" path="/order.xhtml"/>
+  <links id="pf13618892494161" target="pf13618892494162" source="pf13618892494160" outcome="success"/>
+  <links id="pf13618892494163" target="pf13618892494162" source="pf13618892494164" outcome="welcome"/>
+  <links id="pf13620718491732" target="pf13619919164201" source="pf13618892494164" outcome="category"/>
+  <links id="pf13620718491733" target="pf13620714036121" source="pf13618892494164" outcome="book"/>
+  <links id="pf13624786536530" target="pf13624786536531" source="pf13618892494164" outcome="cart"/>
+  <links id="pf13690492717670" target="pf13690492717672" source="pf13618892494164" outcome="login"/>
+  <links id="pf13690492717671" target="pf13690492717673" source="pf13618892494164" outcome="account"/>
+  <links id="pf13875518097180" target="pf13875518097181" source="pf13618892494164" outcome="order"/>
+</pageflow:Pageflow>

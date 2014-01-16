@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit transaction-type="JTA" name="BookStore">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>jdbc/BookStore</jta-data-source>
+    <class>entities.Client</class>
+    <class>entities.Persistent</class>
+    <class>entities.Book</class>
+    <class>entities.Category</class>
+    <class>entities.Author</class>
+    <class>entities.Order</class>
+    <class>entities.OrderItem</class>
+    <properties>
+    <property name="eclipselink.logging.level.sql" value="FINE"/>
+    </properties>
+  </persistence-unit>
+</persistence>
