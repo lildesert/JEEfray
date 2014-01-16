@@ -22,4 +22,16 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
+  <filter>
+    <filter-name>JpaFilter</filter-name>
+    <filter-class>jpautil.JpaFilter</filter-class>
+    <init-param>
+      <param-name>persistence-unit</param-name>
+      <param-value>BookStore</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>JpaFilter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>
 </web-app>
