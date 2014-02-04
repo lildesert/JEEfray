@@ -30,8 +30,4 @@
       <param-value>BookStore</param-value>
     </init-param>
   </filter>
-  <filter-mapping>
-    <filter-name>JpaFilter</filter-name>
-    <servlet-name>Faces Servlet</servlet-name>
-  </filter-mapping>
 </web-app>
