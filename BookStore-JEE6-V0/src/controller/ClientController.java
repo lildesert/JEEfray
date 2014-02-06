@@ -1,11 +1,13 @@
 package controller;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import model.ClientManager;
 import model.ClientService;
 import entities.Client;
 import entities.Order;
@@ -13,23 +15,26 @@ import form.LoginForm;
 
 @Named
 @SessionScoped
-public class ClientController {
-
+public class ClientController implements Serializable {
+	
+	private Order order = new Order();
+	
 	@Inject
 	private ClientService clientService;
+	
 	@Inject
 	private LoginForm loginForm;
 
 	private Client currentClient;
-	private Order order;
 
 	public String doLogin() {
-		currentClient = clientService.login(loginForm.getLogin(),
-				loginForm.getPassword());
+		currentClient = clientService.login(loginForm.getLogin(),loginForm.getPassword());
+		System.out.println("pwd : " + loginForm.getPassword());
+		
 		if (currentClient == null) {
 			return null;
 		}
-		return "success";
+		return "account";
 	}
 
 	public List getClientList() {
