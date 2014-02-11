@@ -7,7 +7,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import model.ClientManager;
 import model.ClientService;
 import entities.Client;
 import entities.Order;
@@ -24,7 +23,10 @@ public class ClientController implements Serializable {
 	
 	@Inject
 	private LoginForm loginForm;
-
+	
+	@Inject
+	private  MessageBean messageBean;
+	
 	private Client currentClient;
 
 	public String doLogin() {
@@ -32,9 +34,10 @@ public class ClientController implements Serializable {
 		System.out.println("pwd : " + loginForm.getPassword());
 		
 		if (currentClient == null) {
+			messageBean.addMessage("clientNotFound");
 			return null;
 		}
-		return "account";
+		return "welcome";
 	}
 
 	public List getClientList() {

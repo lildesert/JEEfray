@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 public class Category extends Persistent {
   private String title = "";
-  private List<Book> books = new ArrayList();;
+  private List<Book> books = new ArrayList();
 
   public boolean equals(Object other) {
     if (other != null && other instanceof Category)
