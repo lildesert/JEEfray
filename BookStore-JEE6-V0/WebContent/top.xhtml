@@ -10,7 +10,7 @@
           <h:outputText value="#{clientController.order.size}" />
         </h:panelGroup>
         <h:panelGroup rendered="#{clientController.loggedIn}">
-          <h:outputText value="#{clientControlller.client.login}" />
+          <h:outputText value="#{clientController.currentClient.login}" />
           <br/>
           <h:commandLink action="#{clientController.doLogout}" value="#{strings['button.logout']}" />
           <br/>

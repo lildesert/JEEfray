@@ -16,8 +16,6 @@ import form.LoginForm;
 @SessionScoped
 public class ClientController implements Serializable {
 	
-	private Order order = new Order();
-	
 	@Inject
 	private ClientService clientService;
 	
@@ -28,6 +26,7 @@ public class ClientController implements Serializable {
 	private  MessageBean messageBean;
 	
 	private Client currentClient;
+	private Order order;
 
 	public String doLogin() {
 		currentClient = clientService.login(loginForm.getLogin(),loginForm.getPassword());
