@@ -7,9 +7,12 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import model.BookService;
 import model.ClientService;
+import entities.Book;
 import entities.Client;
 import entities.Order;
+import entities.OrderItem;
 import form.LoginForm;
 
 @Named
@@ -18,6 +21,9 @@ public class ClientController implements Serializable {
 	
 	@Inject
 	private ClientService clientService;
+	
+	@Inject
+	private BookService bookService;
 	
 	@Inject
 	private LoginForm loginForm;
@@ -48,6 +54,9 @@ public class ClientController implements Serializable {
 	}
 
 	public Order getOrder() {
+		if(order == null) {
+			order = new Order();
+		}
 		return this.order;
 	}
 
@@ -66,5 +75,15 @@ public class ClientController implements Serializable {
 	public String doLogout() {
 		currentClient = null;
 		return "login"; // Une règle de navigation
+	}
+	
+	public void addItemToCart(Long id){
+		Book book = (Book) bookService.find(id);
+		this.getOrder().addOne(book);
+	}
+	
+	public void removeItemFromCart(OrderItem o)
+	{
+		getOrder().removeOne(o.getBook());
 	}
 }
