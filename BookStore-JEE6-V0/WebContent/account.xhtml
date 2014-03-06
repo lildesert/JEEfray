@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	<ui:define name="top">
+		<ui:include src="top.xhtml" />
+	</ui:define>
+	<ui:define name="left">
+		<ui:include src="left.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="accountForm">
+			Login : <h:outputText value="#{clientController.currentClient.login}" />
+			
+			<p:dataTable var="order" value="#{clientController.currentClient.commandes}"
+				style="width:500px;">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Date" />
+					</f:facet>
+					<h:outputText value="#{order.date}" >
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Total" />
+					</f:facet>
+					<h:outputText value="#{order.total}" />€
+				</p:column>
+				<p:column>
+					<h:commandButton action="#{clientController.orderDetails(order.id)}"
+						image="resources/icons/24/next-icon.png" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

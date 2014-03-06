@@ -4,7 +4,13 @@
   <h:graphicImage name="logo.png" library="images" alt="" width="179" height="76" />
   <div style="float: right;">
     <h:form id="topForm">
-      <h:panelGrid columns="2">
+      <h:panelGrid columns="3">
+      	<h:panelGroup>
+	      	<h:commandButton action="#{clientController.addItemToCart(orderItem.book.id)}"
+							image="resources/flags/fr_FR.png" />
+			<h:commandButton action="#{clientController.addItemToCart(orderItem.book.id)}"
+							image="resources/flags/en_GB.png" />
+		</h:panelGroup>
         <h:panelGroup>
           <h:outputText value="Votre panier: " />
           <h:outputText value="#{clientController.order.size}" />

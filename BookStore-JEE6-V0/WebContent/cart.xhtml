@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	<ui:define name="top">
+		<ui:include src="top.xhtml" />
+	</ui:define>
+	<ui:define name="left">
+		<ui:include src="left.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="cartForm">
+			<p:dataTable var="orderItem" value="#{clientController.order.items}"
+				style="width:500px;">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Titre" />
+					</f:facet>
+					<h:outputText value="#{orderItem.book.title}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Prix" />
+					</f:facet>
+					<h:outputText value="#{orderItem.book.price}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Quantité" />
+					</f:facet>
+					<h:outputText value="#{orderItem.quantity}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Prix total" />
+					</f:facet>
+					<h:outputText value="#{orderItem.total}" />
+					<f:facet name="footer">
+						<h:outputText value="#{clientController.order.total}" />
+					</f:facet>
+				</p:column>
+				<p:column>
+					<h:commandButton action="#{clientController.addItemToCart(orderItem.book.id)}"
+						image="resources/icons/24/add-icon.png" />
+				</p:column>
+				<p:column>
+					<h:commandButton action="#{clientController.removeItemFromCart(orderItem)}"
+						image="resources/icons/24/remove-icon.png" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<h:commandLink action="#{clientController.validateCmd}">
+				<h:outputText value="Passez votre commande" />
+			</h:commandLink>
+			<h:messages globalOnly="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>

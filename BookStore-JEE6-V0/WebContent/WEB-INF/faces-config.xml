@@ -9,7 +9,15 @@
       <to-view-id>/welcome.xhtml</to-view-id>
     </navigation-case>
   </navigation-rule>
-
+	
+  <navigation-rule>
+    <from-view-id>account.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>cmdDetails</from-outcome>
+      <to-view-id>/cmdDetails.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>	
+	
   <navigation-rule>
     <from-view-id>*</from-view-id>
     <navigation-case>
@@ -39,6 +47,10 @@
      <navigation-case>
       <from-outcome>order</from-outcome>
       <to-view-id>/order.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>cmdResume</from-outcome>
+      <to-view-id>/cmdResume.xhtml</to-view-id>
     </navigation-case>
   </navigation-rule>
     

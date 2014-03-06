@@ -9,11 +9,14 @@ import javax.inject.Named;
 
 import model.BookService;
 import model.ClientService;
+import model.OrderService;
 import entities.Book;
 import entities.Client;
 import entities.Order;
 import entities.OrderItem;
 import form.LoginForm;
+
+import java.util.Date;
 
 @Named
 @SessionScoped
@@ -26,13 +29,19 @@ public class ClientController implements Serializable {
 	private BookService bookService;
 	
 	@Inject
+	private OrderService orderService;
+	
+	@Inject
 	private LoginForm loginForm;
 	
 	@Inject
 	private  MessageBean messageBean;
 	
 	private Client currentClient;
+	
 	private Order order;
+	
+	private Order selectedOrder;
 
 	public String doLogin() {
 		currentClient = clientService.login(loginForm.getLogin(),loginForm.getPassword());
@@ -42,6 +51,7 @@ public class ClientController implements Serializable {
 			messageBean.addMessage("clientNotFound");
 			return null;
 		}
+		
 		return "welcome";
 	}
 
@@ -58,6 +68,10 @@ public class ClientController implements Serializable {
 			order = new Order();
 		}
 		return this.order;
+	}
+	
+	public Order getSelectedOrder() {
+		return this.selectedOrder;
 	}
 
 	public Client getCurrentClient() {
@@ -85,5 +99,23 @@ public class ClientController implements Serializable {
 	public void removeItemFromCart(OrderItem o)
 	{
 		getOrder().removeOne(o.getBook());
+	}
+	
+	public String validateCmd(){
+		if (currentClient == null) {
+			messageBean.addMessage("notconnected");
+			return null;
+		}
+		order.setDate(new Date());
+		order.setClient(currentClient);
+		this.orderService.create(this.order);
+		currentClient.getCommandes().add(order);
+		this.order = null;
+		return "cmdResume";
+	}
+	
+	public String orderDetails(Long orderID) {
+		selectedOrder = orderService.find(orderID);
+		return "cmdDetails";
 	}
 }

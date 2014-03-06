@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -56,7 +57,7 @@ public class Client extends Persistent{
 
  // @Noncacheable
 //  @OneToMany(mappedBy="client",cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
-  @OneToMany(mappedBy="client",cascade ={CascadeType.ALL})
+  @OneToMany(mappedBy="client",cascade =CascadeType.ALL, fetch=FetchType.LAZY)
   public List<Order> getCommandes() {
     System.out.println(commandes.size());
     return commandes;

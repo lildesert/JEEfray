@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	<ui:define name="top">
+		<ui:include src="top.xhtml" />
+	</ui:define>
+	<ui:define name="left">
+		<ui:include src="left.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="bookForm">
+			<div style="display:inline-block; float: left;">
+				<p:graphicImage value="#{bookController.image}" cache="false" />
+			</div>
+			<div style="margin-left: 20px; display:inline-block; margin-top: 30px;">
+				<h:outputText value="Titre : #{bookController.selectedBook.title}" />
+				
+				<br />
+				<br />
+				<h:dataTable value="#{bookController.selectedBook.authors}" var="author">
+				<f:facet name="header">Auteurs</f:facet>
+				<h:column>
+						<h:outputText value="#{author.firstName} #{author.lastName}" />
+				</h:column>
+			</h:dataTable>
+			</div>
+			<div style="display:block; margin-top: 70px; margin-left: 30px;">
+				<h:commandButton value="Ajouter au panier" action="#{clientController.addItemToCart(bookController.selectedBook.id)}"/>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
