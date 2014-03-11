@@ -1,0 +1,15 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface>
+	</composite:interface>
+	<composite:implementation>
+		<ui:repeat var="locale" value="#{localeBean.locales}">
+			<h:commandLink action="#{localeBean.changeLocale(locale)}">
+				<h:graphicImage name="#{locale}.png" library="flags" />
+			</h:commandLink>
+		</ui:repeat>
+	</composite:implementation>
+</ui:component>
