@@ -40,4 +40,5 @@ public class CategoryController implements Serializable {
 		
 		return "category";
 	}
+	
 }

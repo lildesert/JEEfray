@@ -1,7 +1,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
   <h:form id="leftForm">
-  
+  	
+  	<h:inputText id="searchBook" value="#{leftform.searchBook}" /><br />
+  	<h:commandButton action="#{categoryController.searchBook}" value="#{strings['button.search']}" />
+  	<br /><br />
+  	
   	<h:dataTable value="#{categoryController.categoryList}" var="category">
 	  <f:facet name="header">Category</f:facet>
 	  <h:column>

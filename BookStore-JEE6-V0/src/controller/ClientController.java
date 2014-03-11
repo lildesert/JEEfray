@@ -21,37 +21,38 @@ import java.util.Date;
 @Named
 @SessionScoped
 public class ClientController implements Serializable {
-	
+
 	@Inject
 	private ClientService clientService;
-	
+
 	@Inject
 	private BookService bookService;
-	
+
 	@Inject
 	private OrderService orderService;
-	
+
 	@Inject
 	private LoginForm loginForm;
-	
+
 	@Inject
-	private  MessageBean messageBean;
-	
+	private MessageBean messageBean;
+
 	private Client currentClient;
-	
+
 	private Order order;
-	
+
 	private Order selectedOrder;
 
 	public String doLogin() {
-		currentClient = clientService.login(loginForm.getLogin(),loginForm.getPassword());
+		currentClient = clientService.login(loginForm.getLogin(),
+				loginForm.getPassword());
 		System.out.println("pwd : " + loginForm.getPassword());
-		
+
 		if (currentClient == null) {
 			messageBean.addMessage("clientNotFound");
 			return null;
 		}
-		
+
 		return "welcome";
 	}
 
@@ -64,12 +65,12 @@ public class ClientController implements Serializable {
 	}
 
 	public Order getOrder() {
-		if(order == null) {
+		if (order == null) {
 			order = new Order();
 		}
 		return this.order;
 	}
-	
+
 	public Order getSelectedOrder() {
 		return this.selectedOrder;
 	}
@@ -90,30 +91,33 @@ public class ClientController implements Serializable {
 		currentClient = null;
 		return "login"; // Une règle de navigation
 	}
-	
-	public void addItemToCart(Long id){
+
+	public void addItemToCart(Long id) {
 		Book book = (Book) bookService.find(id);
 		this.getOrder().addOne(book);
 	}
-	
-	public void removeItemFromCart(OrderItem o)
-	{
+
+	public void removeItemFromCart(OrderItem o) {
 		getOrder().removeOne(o.getBook());
 	}
-	
-	public String validateCmd(){
+
+	public String validateCmd() {
 		if (currentClient == null) {
 			messageBean.addMessage("notconnected");
 			return null;
+		} else if (order.getItems().size() == 0) {
+			messageBean.addMessage("cartEmpty");
+			return null;
+		} else {
+			order.setDate(new Date());
+			order.setClient(currentClient);
+			this.orderService.create(this.order);
+			currentClient.getCommandes().add(order);
+			this.order = null;
+			return "cmdResume";
 		}
-		order.setDate(new Date());
-		order.setClient(currentClient);
-		this.orderService.create(this.order);
-		currentClient.getCommandes().add(order);
-		this.order = null;
-		return "cmdResume";
 	}
-	
+
 	public String orderDetails(Long orderID) {
 		selectedOrder = orderService.find(orderID);
 		return "cmdDetails";
