@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" template="template.xhtml"
+  xmlns:dgc="http://java.sun.com/jsf/composite/galland">
+  <ui:define name="top">
+    <ui:include src="top.xhtml" />
+  </ui:define>
+  <ui:define name="left">
+    <ui:include src="left.xhtml" />
+  </ui:define>
+  <ui:define name="content">
+    <h:form id="subscriptionForm">
+      <h:panelGrid columns="3">
+        <h:outputText value="#{strings['Client.login']}" />
+        <h:inputText id="login" value="#{subscriptionForm.login}" />
+        <h:message for="login"></h:message>
+        <h:outputText value="#{strings['Client.password']}" />
+        <h:inputSecret id="password" value="#{subscriptionForm.password}" />
+        <h:message for="password"></h:message>
+        <h:outputText value="#{strings['Client.confirmPassword']}" />
+        <h:inputSecret id="confirmPassword" value="#{subscriptionForm.confirmPassword}" />
+        <h:message for="confirmPassword"></h:message>
+      </h:panelGrid>
+      <h:commandButton  value="#{strings['button.submit']}" />
+      <h:messages globalOnly="true" />
+     </h:form>
+  </ui:define>
+</ui:composition>

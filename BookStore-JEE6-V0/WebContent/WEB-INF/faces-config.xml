@@ -52,12 +52,16 @@
       <from-outcome>cmdResume</from-outcome>
       <to-view-id>/cmdResume.xhtml</to-view-id>
     </navigation-case>
+    <navigation-case>
+      <from-outcome>subscription</from-outcome>
+      <to-view-id>/subscription.xhtml</to-view-id>
+    </navigation-case>
   </navigation-rule>
     
 
   <application>
     <locale-config>
-      <default-locale>en_US</default-locale>
+      <default-locale>fr_FR</default-locale>
       <supported-locale>en_US</supported-locale>
       <supported-locale>fr_FR</supported-locale>
     </locale-config>
