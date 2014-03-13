@@ -3,7 +3,9 @@ package controller;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,16 @@ public class BookController implements Serializable {
 	
 	@Inject
 	private SearchForm searchForm;
+	
+	private String text;
+	
+	public String getText() {
+		return text;
+	}
+	
+	public void setText(String t) {
+		text = t;
+	}
 	
 	public Book getSelectedBook() {
 		return selectedBook;
@@ -78,4 +90,22 @@ public class BookController implements Serializable {
 		}
 		return "search";
 	}
+	
+	public List<String> complete(String query) {
+		
+		query = query + "%";
+		Map<String, Object> param = new HashMap<>();
+		List<String> results = new ArrayList<String>();
+		
+		param.put("like", query);
+		selectedBooks = bookService.findWithNamedQuery("Book.findLikeOnTitle", param);
+		
+		Iterator it = selectedBooks.iterator();
+		while(it.hasNext()) {
+			results.add(((Book) it.next()).getTitle());
+		}
+		
+		return results;
+	}
+
 }

@@ -12,8 +12,9 @@
 	<ui:define name="content">
 		<h:form id="bookForm">
 			<div style="display:inline-block; float: left;">
-				<p:graphicImage value="#{bookController.image}" cache="false" />
+				<p:graphicImage value="#{bookController.image}" cache="false" title="#{bookController.selectedBook.title}"/>
 			</div>
+			
 			<div style="margin-left: 20px; display:inline-block; margin-top: 30px;">
 				<h:outputText value="Titre : #{bookController.selectedBook.title}" />
 				
