@@ -3,7 +3,9 @@ package controller;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -13,6 +15,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import entities.Book;
+import form.SearchForm;
 import model.BookService;
 
 @Named
@@ -24,8 +27,17 @@ public class BookController implements Serializable {
 	
 	private Book selectedBook;
 	
+	private List<Book> selectedBooks;
+	
+	@Inject
+	private SearchForm searchForm;
+	
 	public Book getSelectedBook() {
 		return selectedBook;
+	}
+	
+	public List<Book> getSelectedBooks() {
+		return selectedBooks;
 	}
 
 	public void setSelectedBook(Book selectedBook) {
@@ -52,5 +64,18 @@ public class BookController implements Serializable {
 	    }
 
 	    return content;
+	}
+	
+	public String searchBook() {
+		String text = "%" + searchForm.getText() + "%";
+		
+		if (text.isEmpty()) {
+			selectedBooks = bookService.findAll();
+		} else {		
+			Map<String, Object> param = new HashMap<>();
+			param.put("like", text);
+			selectedBooks = bookService.findWithNamedQuery("Book.findLikeOnTitle", param);
+		}
+		return "search";
 	}
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13618853170180" configfile="/BookStore-JEE6-V0/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="122" y="178" id="pf13618892494160" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13618892494161" path="login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="338" y="178" id="pf13618892494162" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13618892494161 pf13618892494163" path="/welcome.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1522" id="pf13618892494164" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13618892494163 pf13620718491732 pf13620718491733 pf13624786536530 pf13690492717670 pf13690492717671 pf13875518097180 pf13940933022952" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="338" y="178" id="pf13618892494162" referenceLink="//@navigationRule.2/@navigationCase.9/@toViewId|" inlinks="pf13618892494161 pf13618892494163" path="/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1714" id="pf13618892494164" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13618892494163 pf13620718491732 pf13620718491733 pf13624786536530 pf13690492717670 pf13690492717671 pf13875518097180 pf13940933022952 pf13947019209112 pf13947019365446" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="category.xhtml" x="338" y="562" id="pf13619919164201" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf13620718491732" path="/category.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="book.xhtml" x="338" y="946" id="pf13620714036121" referenceLink="//@navigationRule.2/@navigationCase.2/@toViewId|" inlinks="pf13620718491733" path="/book.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="cart.xhtml" x="338" y="1330" id="pf13624786536531" referenceLink="//@navigationRule.2/@navigationCase.3/@toViewId|" inlinks="pf13624786536530" path="/cart.xhtml"/>
@@ -10,8 +10,10 @@
   <nodes xsi:type="pageflow:PFPage" name="account.xhtml" x="338" y="2098" id="pf13690492717673" referenceLink="//@navigationRule.2/@navigationCase.5/@toViewId|" inlinks="pf13690492717671" path="/account.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="order.xhtml" x="338" y="2482" id="pf13875518097181" referenceLink="//@navigationRule.2/@navigationCase.6/@toViewId|" inlinks="pf13875518097180" path="/order.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="cmdResume.xhtml" x="338" y="2866" id="pf13940933022963" referenceLink="//@navigationRule.2/@navigationCase.7/@toViewId|" inlinks="pf13940933022952" path="/cmdResume.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="account.xhtml" x="122" y="3250" id="pf13945325119440" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13945325119441" path="account.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="cmdDetails.xhtml" x="338" y="3250" id="pf13945325119442" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13945325119441" path="/cmdDetails.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="account.xhtml" x="122" y="3634" id="pf13945325119440" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13945325119441" path="account.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cmdDetails.xhtml" x="338" y="3634" id="pf13945325119442" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13945325119441" path="/cmdDetails.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="subscription.xhtml" x="338" y="3250" id="pf13947019209113" referenceLink="//@navigationRule.2/@navigationCase.8/@toViewId|" inlinks="pf13947019209112" path="/subscription.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="results.xhtml" id="pf13947019365447" referenceLink="//@navigationRule.2/@navigationCase.9/@toViewId|" inlinks="pf13947019365446" path="/results.xhtml"/>
   <links id="pf13618892494161" target="pf13618892494162" source="pf13618892494160" outcome="success"/>
   <links id="pf13618892494163" target="pf13618892494162" source="pf13618892494164" outcome="welcome"/>
   <links id="pf13620718491732" target="pf13619919164201" source="pf13618892494164" outcome="category"/>
@@ -22,4 +24,6 @@
   <links id="pf13875518097180" target="pf13875518097181" source="pf13618892494164" outcome="order"/>
   <links id="pf13940933022952" target="pf13940933022963" source="pf13618892494164" outcome="cmdResume"/>
   <links id="pf13945325119441" target="pf13945325119442" source="pf13945325119440" outcome="cmdDetails"/>
+  <links id="pf13947019209112" target="pf13947019209113" source="pf13618892494164" outcome="subscription"/>
+  <links id="pf13947019365446" target="pf13947019365447" source="pf13618892494164" outcome="search"/>
 </pageflow:Pageflow>
