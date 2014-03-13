@@ -1,10 +1,7 @@
 package form;
 
-import java.io.Serializable;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -15,10 +12,19 @@ public class SubscriptionForm {
 	private String login;
 	private String password;
 	private String confirmPassword;
+	private String mail;
+
+	@NotNull
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
 	@NotNull
 	@Length(min = 3, max = 25)
-	@AssertTrue()
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}

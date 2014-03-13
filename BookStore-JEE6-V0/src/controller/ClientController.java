@@ -15,6 +15,7 @@ import entities.Client;
 import entities.Order;
 import entities.OrderItem;
 import form.LoginForm;
+import form.SubscriptionForm;
 
 import java.util.Date;
 
@@ -33,6 +34,9 @@ public class ClientController implements Serializable {
 
 	@Inject
 	private LoginForm loginForm;
+	
+	@Inject
+	private SubscriptionForm subForm;
 
 	@Inject
 	private MessageBean messageBean;
@@ -121,5 +125,18 @@ public class ClientController implements Serializable {
 	public String orderDetails(Long orderID) {
 		selectedOrder = orderService.find(orderID);
 		return "cmdDetails";
+	}
+	
+	public String subscribe()
+	{
+		Client c = new Client();
+		c.setLogin(subForm.getLogin());
+		c.setPassword(subForm.getPassword());
+		c.setMail(subForm.getMail());
+		c.setActive(false);
+		
+		
+		
+		return "subscription";
 	}
 }
