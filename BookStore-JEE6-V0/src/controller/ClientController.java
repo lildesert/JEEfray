@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import service.SendMail;
 import model.BookService;
 import model.ClientService;
 import model.OrderService;
@@ -134,8 +135,12 @@ public class ClientController implements Serializable {
 		c.setPassword(subForm.getPassword());
 		c.setMail(subForm.getMail());
 		c.setActive(false);
+		clientService.create(c);
 		
+		String text = "Cliquez sur le lien pour activer votre compte : /r/n";
+		text += "http://localhost:8080/BookStore-JEE6-V0/validateAccount.xhtml?id="+c.getId();
 		
+		SendMail.send(c.getMail(), "admin@JEEFray.fr", "Validation de l'inscription à JEEFray", text);
 		
 		return "subscription";
 	}
