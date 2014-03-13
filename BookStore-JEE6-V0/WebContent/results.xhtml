@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+	<ui:define name="top">
+		<ui:include src="top.xhtml" />
+	</ui:define>
+	<ui:define name="left">
+		<ui:include src="left.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="cartForm">		
+			<h:dataTable value="#{bookController.selectedBooks}" var="book">
+				<f:facet name="header">Livres</f:facet>
+				<h:column>
+					<h:commandLink action="#{bookController.selectBook(book.id)}">
+						<h:outputText value="#{book.title}" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
