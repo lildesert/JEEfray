@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13618853170180" configfile="/BookStore-JEE6-V0/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="122" y="178" id="pf13618892494160" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13618892494161" path="login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="338" y="178" id="pf13618892494162" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13618892494161 pf13618892494163" path="/welcome.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1714" id="pf13618892494164" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13618892494163 pf13620718491732 pf13620718491733 pf13624786536530 pf13690492717670 pf13690492717671 pf13875518097180 pf13940933022952 pf13947019365446 pf13947057338620 pf13947057338621" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="category.xhtml" x="338" y="562" id="pf13619919164201" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" inlinks="pf13620718491732" path="/category.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="book.xhtml" x="338" y="946" id="pf13620714036121" referenceLink="//@navigationRule.2/@navigationCase.2/@toViewId|" inlinks="pf13620718491733" path="/book.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="cart.xhtml" x="338" y="1330" id="pf13624786536531" referenceLink="//@navigationRule.2/@navigationCase.3/@toViewId|" inlinks="pf13624786536530" path="/cart.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="1714" id="pf13690492717672" referenceLink="//@navigationRule.2/@navigationCase.4/@toViewId|" inlinks="pf13690492717670" path="/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="account.xhtml" x="338" y="2098" id="pf13690492717673" referenceLink="//@navigationRule.2/@navigationCase.5/@toViewId|" inlinks="pf13690492717671" path="/account.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="order.xhtml" x="338" y="2482" id="pf13875518097181" referenceLink="//@navigationRule.2/@navigationCase.6/@toViewId|" inlinks="pf13875518097180" path="/order.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="cmdResume.xhtml" x="338" y="2866" id="pf13940933022963" referenceLink="//@navigationRule.2/@navigationCase.7/@toViewId|" inlinks="pf13940933022952" path="/cmdResume.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="338" y="178" id="pf13618892494162" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf13618892494161 pf13965144496620" path="/welcome.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="account.xhtml" x="122" y="3634" id="pf13945325119440" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13945325119441" path="account.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="cmdDetails.xhtml" x="338" y="3634" id="pf13945325119442" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13945325119441" path="/cmdDetails.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="subscription.xhtml" x="338" y="3250" id="pf13947019209113" referenceLink="//@navigationRule.2/@navigationCase.10/@toViewId|" inlinks="pf13947057338620" path="/subscription.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="results.xhtml" id="pf13947019365447" referenceLink="//@navigationRule.2/@navigationCase.9/@toViewId|" inlinks="pf13947019365446" path="/results.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="subscribe.xhtml" id="pf13947057338632" referenceLink="//@navigationRule.2/@navigationCase.8/@toViewId|" inlinks="pf13947057338621" path="/subscribe.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13965144496621" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13965144496620 pf13965144496622 pf13965144496623 pf13965144496624 pf13965144496625 pf13965144496626 pf13965144496627 pf13965144496628 pf13965144496629 pf139651444966210 pf139651444966211 pf139651533582822" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="category.xhtml" id="pf139651444966212" referenceLink="//@navigationRule.3/@navigationCase.1/@toViewId|" inlinks="pf13965144496622" path="/category.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="book.xhtml" id="pf139651444966213" referenceLink="//@navigationRule.3/@navigationCase.2/@toViewId|" inlinks="pf13965144496623" path="/book.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cart.xhtml" id="pf139651444966214" referenceLink="//@navigationRule.3/@navigationCase.3/@toViewId|" inlinks="pf13965144496624" path="/cart.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf139651444966215" referenceLink="//@navigationRule.3/@navigationCase.4/@toViewId|" inlinks="pf13965144496625" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="account.xhtml" id="pf139651444966216" referenceLink="//@navigationRule.3/@navigationCase.5/@toViewId|" inlinks="pf13965144496626" path="/account.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="order.xhtml" id="pf139651444966217" referenceLink="//@navigationRule.3/@navigationCase.6/@toViewId|" inlinks="pf13965144496627" path="/order.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cmdResume.xhtml" id="pf139651444966318" referenceLink="//@navigationRule.3/@navigationCase.7/@toViewId|" inlinks="pf13965144496628" path="/cmdResume.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="subscribe.xhtml" id="pf139651444966319" referenceLink="//@navigationRule.3/@navigationCase.8/@toViewId|" inlinks="pf13965144496629" path="/subscribe.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="results.xhtml" id="pf139651444966320" referenceLink="//@navigationRule.3/@navigationCase.9/@toViewId|" inlinks="pf139651444966210" path="/results.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="subscription.xhtml" id="pf139651444966321" referenceLink="//@navigationRule.2/@navigationCase.11/@toViewId|" inlinks="pf139651444966211" path="/subscription.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="validateAccount.xhtml" id="pf139651533582823" referenceLink="//@navigationRule.2/@navigationCase.11/@toViewId|" inlinks="pf139651533582822" path="/validateAccount.xhtml"/>
   <links id="pf13618892494161" target="pf13618892494162" source="pf13618892494160" outcome="success"/>
-  <links id="pf13618892494163" target="pf13618892494162" source="pf13618892494164" outcome="welcome"/>
-  <links id="pf13620718491732" target="pf13619919164201" source="pf13618892494164" outcome="category"/>
-  <links id="pf13620718491733" target="pf13620714036121" source="pf13618892494164" outcome="book"/>
-  <links id="pf13624786536530" target="pf13624786536531" source="pf13618892494164" outcome="cart"/>
-  <links id="pf13690492717670" target="pf13690492717672" source="pf13618892494164" outcome="login"/>
-  <links id="pf13690492717671" target="pf13690492717673" source="pf13618892494164" outcome="account"/>
-  <links id="pf13875518097180" target="pf13875518097181" source="pf13618892494164" outcome="order"/>
-  <links id="pf13940933022952" target="pf13940933022963" source="pf13618892494164" outcome="cmdResume"/>
   <links id="pf13945325119441" target="pf13945325119442" source="pf13945325119440" outcome="cmdDetails"/>
-  <links id="pf13947019365446" target="pf13947019365447" source="pf13618892494164" outcome="search"/>
-  <links id="pf13947057338620" target="pf13947019209113" source="pf13618892494164" outcome="subscription"/>
-  <links id="pf13947057338621" target="pf13947057338632" source="pf13618892494164" outcome="subscribe"/>
+  <links id="pf13965144496620" target="pf13618892494162" source="pf13965144496621" outcome="welcome"/>
+  <links id="pf13965144496622" target="pf139651444966212" source="pf13965144496621" outcome="category"/>
+  <links id="pf13965144496623" target="pf139651444966213" source="pf13965144496621" outcome="book"/>
+  <links id="pf13965144496624" target="pf139651444966214" source="pf13965144496621" outcome="cart"/>
+  <links id="pf13965144496625" target="pf139651444966215" source="pf13965144496621" outcome="login"/>
+  <links id="pf13965144496626" target="pf139651444966216" source="pf13965144496621" outcome="account"/>
+  <links id="pf13965144496627" target="pf139651444966217" source="pf13965144496621" outcome="order"/>
+  <links id="pf13965144496628" target="pf139651444966318" source="pf13965144496621" outcome="cmdResume"/>
+  <links id="pf13965144496629" target="pf139651444966319" source="pf13965144496621" outcome="subscribe"/>
+  <links id="pf139651444966210" target="pf139651444966320" source="pf13965144496621" outcome="search"/>
+  <links id="pf139651444966211" target="pf139651444966321" source="pf13965144496621" outcome="subscription"/>
+  <links id="pf139651533582822" target="pf139651533582823" source="pf13965144496621" outcome="validateAccount"/>
 </pageflow:Pageflow>

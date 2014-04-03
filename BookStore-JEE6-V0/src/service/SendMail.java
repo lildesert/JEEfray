@@ -4,44 +4,41 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-public class SendMail
-{
-   public static void send(String mailTo, String mailFrom,String subject, String text)
-   {    
-      // Assuming you are sending email from localhost
-      String host = "localhost";
+public class SendMail {
+	public static void send(String mailTo, String mailFrom, String subject,
+			String text) {
 
-      // Get system properties
-      Properties properties = System.getProperties();
+		final String username = "ahdavidmangedesnems@gmail.com";
+		final String password = "negrofragile";
 
-      // Setup mail server
-      properties.setProperty("mail.smtp.host", host);
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.socketFactory.port", "465");
+		properties.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.port", "465");
 
-      // Get the default Session object.
-      Session session = Session.getDefaultInstance(properties);
+		Session session = Session.getInstance(properties,
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(username, password);
+					}
+				});
 
-      try{
-         // Create a default MimeMessage object.
-         MimeMessage message = new MimeMessage(session);
+		try {
 
-         // Set From: header field of the header.
-         message.setFrom(new InternetAddress(mailFrom));
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(mailFrom));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(mailTo));
+			message.setSubject(subject);
+			message.setContent(text, "text/html; charset=utf-8");
 
-         // Set To: header field of the header.
-         message.addRecipient(Message.RecipientType.TO,
-                                  new InternetAddress(mailTo));
+			Transport.send(message);
 
-         // Set Subject: header field
-         message.setSubject(subject);
-
-         // Now set the actual message
-         message.setText(text);
-
-         // Send message
-         Transport.send(message);
-         System.out.println("Sent message successfully....");
-      }catch (MessagingException mex) {
-         mex.printStackTrace();
-      }
-   }
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
