@@ -16,7 +16,7 @@
       <from-outcome>cmdDetails</from-outcome>
       <to-view-id>/cmdDetails.xhtml</to-view-id>
     </navigation-case>
-  </navigation-rule>	
+  </navigation-rule>
 	
   <navigation-rule>
     <from-view-id>*</from-view-id>
@@ -63,6 +63,10 @@
     <navigation-case>
       <from-outcome>subscription</from-outcome>
       <to-view-id>/subscription.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>validateAccount</from-outcome>
+      <to-view-id>/validateAccount.xhtml</to-view-id>
     </navigation-case>
   </navigation-rule>
     

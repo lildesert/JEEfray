@@ -137,8 +137,10 @@ public class ClientController implements Serializable {
 		c.setActive(false);
 		clientService.create(c);
 		
-		String text = "Cliquez sur le lien pour activer votre compte : /r/n";
-		text += "http://localhost:8080/BookStore-JEE6-V0/validateAccount.xhtml?id="+c.getId();
+		//Envoi du mail d'activation
+		String newLine = System.getProperty("line.separator");
+		String text = "Cliquez sur le lien pour activer votre compte : "+newLine;
+		text += "<a href='http://localhost:8080/BookStore-JEE6-V0/rest/validateAccount?id="+c.getId() +"'>Valider compte</a>";
 		
 		SendMail.send(c.getMail(), "admin@JEEFray.fr", "Validation de l'inscription à JEEFray", text);
 		
