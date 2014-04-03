@@ -28,7 +28,7 @@ public class BookController implements Serializable {
 	private BookService bookService;
 	
 	private Book selectedBook;
-	
+		
 	private List<Book> selectedBooks;
 	
 	@Inject
@@ -79,8 +79,8 @@ public class BookController implements Serializable {
 	}
 	
 	public String searchBook() {
-		String text = "%" + searchForm.getText() + "%";
-		
+		String tmp = text;
+		text = "%" + text.trim() + "%";
 		if (text.isEmpty()) {
 			selectedBooks = bookService.findAll();
 		} else {		
@@ -88,6 +88,7 @@ public class BookController implements Serializable {
 			param.put("like", text);
 			selectedBooks = bookService.findWithNamedQuery("Book.findLikeOnTitle", param);
 		}
+		text = tmp;
 		return "search";
 	}
 	

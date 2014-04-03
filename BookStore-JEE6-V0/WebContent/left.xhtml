@@ -1,9 +1,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" >
   	
-  	<h:form id="leftForm">
+  	<h:form id="searchForm">
 	  	
-	  	<p:autoComplete value="#{bookController.text}" completeMethod="#{bookController.complete}" />
+	  	<p:autoComplete value="#{bookController.text}" completeMethod="#{bookController.complete}">
+	  	</p:autoComplete>
+	  	
 	  	<h:commandButton action="#{bookController.searchBook()}" value="#{strings['button.search']}" />
 	  	<br /><br />
 	  		  	
