@@ -19,8 +19,8 @@
 				<h:message for="login" />
 
 				<h:outputText value="Mail" />
-				<p:inputText id="mail" value="#{subscriptionForm.mail}" required="true"
-					requiredMessage="#{strings['Mail.required']}"
+				<p:inputText id="mail" value="#{subscriptionForm.mail}"
+					required="true" requiredMessage="#{strings['Mail.required']}"
 					validatorMessage="#{strings['Mail.validator']}">
 					<f:validateRegex
 						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -34,7 +34,8 @@
 					promptLabel="#{strings['Password.prompt']}"
 					weakLabel="#{strings['Password.weak']}"
 					goodLabel="#{strings['Password.good']}"
-					strongLabel="#{strings['Password.strong']}" validatorMessage="#{strings['Password.validator']}" />
+					strongLabel="#{strings['Password.strong']}"
+					validatorMessage="#{strings['Password.validator']}" />
 				<h:message for="password" />
 
 				<h:outputText value="#{strings['Client.confirmPassword']}" />
@@ -44,7 +45,8 @@
 				<h:message for="confirmPassword" />
 
 			</h:panelGrid>
-			<h:commandButton action="#{clientController.subscribe}" value="#{strings['button.submit']}" />
+			<h:commandButton action="#{clientController.subscribe}"
+				value="#{strings['button.submit']}" />
 			<h:messages globalOnly="true" />
 		</h:form>
 	</ui:define>

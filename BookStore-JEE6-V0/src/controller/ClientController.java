@@ -1,11 +1,24 @@
 package controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
 import service.SendMail;
 import model.BookService;
@@ -35,7 +48,7 @@ public class ClientController implements Serializable {
 
 	@Inject
 	private LoginForm loginForm;
-	
+
 	@Inject
 	private SubscriptionForm subForm;
 
@@ -43,6 +56,8 @@ public class ClientController implements Serializable {
 	private MessageBean messageBean;
 
 	private Client currentClient;
+
+	private UploadedFile file;
 
 	private Order order;
 
@@ -84,6 +99,14 @@ public class ClientController implements Serializable {
 		return currentClient;
 	}
 
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
 	public void setCurrentClient(Client client) {
 		this.currentClient = client;
 	}
@@ -118,6 +141,22 @@ public class ClientController implements Serializable {
 			order.setClient(currentClient);
 			this.orderService.create(this.order);
 			currentClient.getCommandes().add(order);
+
+			// Envoi du mail de confirmation
+			String newLine = System.getProperty("line.separator");
+
+			String text = "Information sur la commande n°"
+					+ order.getId().toString() + " : " + newLine + newLine;
+			for (OrderItem o : order.getItems()) {
+				text += o.getBook().getTitle() + " " + o.getTotal() + newLine;
+			}
+			text += "Montant total de la commande : "
+					+ order.getTotal().toString() + newLine;
+			text += "Merci d'avoir passé commande via notre boutique !";
+
+			SendMail.send(currentClient.getMail(), "admin@JEEFray.fr",
+					"Confirmation de la commande", text);
+
 			this.order = null;
 			return "cmdResume";
 		}
@@ -127,23 +166,65 @@ public class ClientController implements Serializable {
 		selectedOrder = orderService.find(orderID);
 		return "cmdDetails";
 	}
-	
-	public String subscribe()
-	{
+
+	public String subscribe() {
 		Client c = new Client();
 		c.setLogin(subForm.getLogin());
 		c.setPassword(subForm.getPassword());
 		c.setMail(subForm.getMail());
 		c.setActive(false);
 		clientService.create(c);
-		
-		//Envoi du mail d'activation
+
+		// Envoi du mail d'activation
 		String newLine = System.getProperty("line.separator");
-		String text = "Cliquez sur le lien pour activer votre compte : "+newLine;
-		text += "<a href='http://localhost:8080/BookStore-JEE6-V0/rest/validateAccount?id="+c.getId() +"'>Valider compte</a>";
-		
-		SendMail.send(c.getMail(), "admin@JEEFray.fr", "Validation de l'inscription Ã  JEEFray", text);
-		
+		String text = "Cliquez sur le lien pour activer votre compte : "
+				+ newLine;
+		text += "<a href='http://localhost:8080/BookStore-JEE6-V0/validateAccount.xhtml?id="
+				+ c.getId() + "'>Valider votre compte</a>";
+
+		SendMail.send(c.getMail(), "admin@JEEFray.fr",
+				"Validation de l'inscription à JEEFray", text);
+
 		return "subscription";
 	}
+
+	public void handleFileUpload(FileUploadEvent event) {
+		try {
+			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+			String s = context.getRealPath("resources/imagesAccount/"); 
+			File targetFolder = new File(s);
+			InputStream inputStream = event.getFile().getInputstream();
+			OutputStream out = new FileOutputStream(new File(targetFolder,
+					currentClient.getId().toString() + "£"
+							+ event.getFile().getFileName()));
+			int read = 0;
+			byte[] bytes = new byte[1024];
+
+			while ((read = inputStream.read(bytes)) != -1) {
+				out.write(bytes, 0, read);
+			}
+			inputStream.close();
+			out.flush();
+			out.close();
+			context.redirect(context.getRequestContextPath()+"/account.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String getImage() {
+		String imageClient = "resources/imagesAccount/";
+		
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		String s = context.getRealPath("resources/imagesAccount/"); 
+		File fDir = new File(s);
+		for (File f : fDir.listFiles()) {
+			if (f.getName().contains(currentClient.getId().toString() + "£")) {
+				imageClient += f.getName();
+			}
+		}
+		
+		return imageClient;
+	}
+
 }

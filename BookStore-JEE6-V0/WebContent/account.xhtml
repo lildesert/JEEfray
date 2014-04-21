@@ -12,15 +12,34 @@
 	<ui:define name="content">
 		<h:form id="accountForm">
 			Login : <h:outputText value="#{clientController.currentClient.login}" />
-			<br /><br />
-			<p:dataTable var="order" value="#{clientController.currentClient.commandes}"
+			<br />
+			<br />
+
+			<h:form enctype="multipart/form-data">
+				Ajoutez ou changez votre avatar :
+				<br /><br />
+				
+				<img src="#{clientController.image}" title="Avatar" cache="false" width="200" height="150" />
+				<br /><br />
+				
+				<p:fileUpload mode="advanced"
+					fileUploadListener="#{clientController.handleFileUpload}"
+					allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"
+					auto="true" style="width: 200px;" />
+			</h:form>
+
+			<br />
+			<br />
+
+			<p:dataTable var="order"
+				value="#{clientController.currentClient.commandes}"
 				style="width:500px;">
 				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Date" />
 					</f:facet>
-					<h:outputText value="#{order.date}" >
-						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					<h:outputText value="#{order.date}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 				<p:column>
@@ -30,7 +49,8 @@
 					<h:outputText value="#{order.total}" />€
 				</p:column>
 				<p:column>
-					<h:commandButton action="#{clientController.orderDetails(order.id)}"
+					<h:commandButton
+						action="#{clientController.orderDetails(order.id)}"
 						image="resources/icons/24/next-icon.png" />
 				</p:column>
 			</p:dataTable>

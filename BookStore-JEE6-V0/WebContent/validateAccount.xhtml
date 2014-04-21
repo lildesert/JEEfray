@@ -11,7 +11,13 @@
 	</ui:define>
 	<ui:define name="content">
 		<h:form id="validateAccount">
-			Votre compte a bien été activé !
+			<h:panelGroup layout="block" rendered="#{activationBean.valid}">
+				<p>Your account has been successfully activated!</p>
+				<p>You are welcome to login!</p>
+			</h:panelGroup>
+			<h:panelGroup layout="block" rendered="#{!activationBean.valid}">
+				<p>Activation failed! Please contact the administrator!</p>
+			</h:panelGroup>
 		</h:form>
 	</ui:define>
 </ui:composition>

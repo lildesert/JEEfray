@@ -12,6 +12,7 @@ public class SendMail {
 		final String password = "negrofragile";
 
 		Properties properties = new Properties();
+
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.socketFactory.port", "465");
 		properties.put("mail.smtp.socketFactory.class",
