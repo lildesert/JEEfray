@@ -3,10 +3,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:dgc="http://java.sun.com/jsf/composite/galland">
-	<h:graphicImage name="logo.png" library="images" alt="" width="179"
-		height="76" />
-	<div style="float: right;">
-		<h:form id="topForm">
+
+	<h:form id="topForm">
+		<div style="display:inline-block; width:300px;">
+			<h:commandLink action="welcome">
+				<h:graphicImage name="logo.png" library="images" alt="" width="179"
+					height="76" />
+			</h:commandLink>
+		</div>
+		<div style="float: right; display:inline-block;">
 			<dgc:localeChooser />
 			<h:panelGrid columns="3">
 				<h:panelGroup>
@@ -26,8 +31,10 @@
 						immediate="true" />
 				</h:panelGroup>
 				<h:commandLink action="cart" value="#{strings['button.goToCart']}" />
-				<h:commandLink action="subscribe" value="#{strings['button.subscription']}" />
+				<h:commandLink action="subscribe"
+					value="#{strings['button.subscription']}" />
 			</h:panelGrid>
-		</h:form>
-	</div>
+		</div>
+	</h:form>
+
 </ui:composition>

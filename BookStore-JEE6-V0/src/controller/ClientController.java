@@ -14,12 +14,15 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
+import service.CookieService;
 import service.SendMail;
 import model.BookService;
 import model.ClientService;
@@ -66,12 +69,24 @@ public class ClientController implements Serializable {
 	public String doLogin() {
 		currentClient = clientService.login(loginForm.getLogin(),
 				loginForm.getPassword());
-		System.out.println("pwd : " + loginForm.getPassword());
-
+		
 		if (currentClient == null) {
 			messageBean.addMessage("clientNotFound");
 			return null;
 		}
+		else if(currentClient.getActive() == false)
+		{
+			messageBean.addMessage("accountNotActivated");
+			currentClient = null;
+			return null;
+		}
+		if (loginForm.isRemember()) {
+	        CookieService.addCookie("userLogin", currentClient.getLogin(), 2592000);
+	        CookieService.addCookie("userPwd", currentClient.getPassword(), 2592000);
+	    } else {
+	        CookieService.removeCookie("userLogin");
+	        CookieService.removeCookie("userPwd");
+	    }
 
 		return "welcome";
 	}
@@ -193,13 +208,20 @@ public class ClientController implements Serializable {
 			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 			String s = context.getRealPath("resources/imagesAccount/"); 
 			File targetFolder = new File(s);
+			
+			for (File f : targetFolder.listFiles()) {
+				if (f.getName().contains(currentClient.getId().toString() + "£")) {
+					f.delete();
+				}
+			}
+			
 			InputStream inputStream = event.getFile().getInputstream();
 			OutputStream out = new FileOutputStream(new File(targetFolder,
 					currentClient.getId().toString() + "£"
 							+ event.getFile().getFileName()));
 			int read = 0;
 			byte[] bytes = new byte[1024];
-
+			
 			while ((read = inputStream.read(bytes)) != -1) {
 				out.write(bytes, 0, read);
 			}
