@@ -160,14 +160,14 @@ public class ClientController implements Serializable {
 			// Envoi du mail de confirmation
 			String newLine = System.getProperty("line.separator");
 
-			String text = "Information sur la commande n°"
+			String text = "Information sur la commande nï¿½"
 					+ order.getId().toString() + " : " + newLine + newLine;
 			for (OrderItem o : order.getItems()) {
 				text += o.getBook().getTitle() + " " + o.getTotal() + newLine;
 			}
 			text += "Montant total de la commande : "
 					+ order.getTotal().toString() + newLine;
-			text += "Merci d'avoir passé commande via notre boutique !";
+			text += "Merci d'avoir passï¿½ commande via notre boutique !";
 
 			SendMail.send(currentClient.getMail(), "admin@JEEFray.fr",
 					"Confirmation de la commande", text);
@@ -181,7 +181,13 @@ public class ClientController implements Serializable {
 		selectedOrder = orderService.find(orderID);
 		return "cmdDetails";
 	}
-
+	
+	public void getBill(Long orderID) {
+		selectedOrder = orderService.find(orderID);
+		PDFCreator pc = new PDFCreator(selectedOrder);
+		pc.createPDF();
+	}
+	
 	public String subscribe() {
 		Client c = new Client();
 		c.setLogin(subForm.getLogin());
@@ -198,7 +204,7 @@ public class ClientController implements Serializable {
 				+ c.getId() + "'>Valider votre compte</a>";
 
 		SendMail.send(c.getMail(), "admin@JEEFray.fr",
-				"Validation de l'inscription à JEEFray", text);
+				"Validation de l'inscription ï¿½ JEEFray", text);
 
 		return "subscription";
 	}
@@ -210,14 +216,14 @@ public class ClientController implements Serializable {
 			File targetFolder = new File(s);
 			
 			for (File f : targetFolder.listFiles()) {
-				if (f.getName().contains(currentClient.getId().toString() + "£")) {
+				if (f.getName().contains(currentClient.getId().toString() + "ï¿½")) {
 					f.delete();
 				}
 			}
 			
 			InputStream inputStream = event.getFile().getInputstream();
 			OutputStream out = new FileOutputStream(new File(targetFolder,
-					currentClient.getId().toString() + "£"
+					currentClient.getId().toString() + "ï¿½"
 							+ event.getFile().getFileName()));
 			int read = 0;
 			byte[] bytes = new byte[1024];
@@ -241,7 +247,7 @@ public class ClientController implements Serializable {
 		String s = context.getRealPath("resources/imagesAccount/"); 
 		File fDir = new File(s);
 		for (File f : fDir.listFiles()) {
-			if (f.getName().contains(currentClient.getId().toString() + "£")) {
+			if (f.getName().contains(currentClient.getId().toString() + "ï¿½")) {
 				imageClient += f.getName();
 			}
 		}
