@@ -160,14 +160,14 @@ public class ClientController implements Serializable {
 			// Envoi du mail de confirmation
 			String newLine = System.getProperty("line.separator");
 
-			String text = "Information sur la commande nï¿½"
+			String text = "Information sur la commande n£"
 					+ order.getId().toString() + " : " + newLine + newLine;
 			for (OrderItem o : order.getItems()) {
 				text += o.getBook().getTitle() + " " + o.getTotal() + newLine;
 			}
 			text += "Montant total de la commande : "
 					+ order.getTotal().toString() + newLine;
-			text += "Merci d'avoir passï¿½ commande via notre boutique !";
+			text += "Merci d'avoir pass£ commande via notre boutique !";
 
 			SendMail.send(currentClient.getMail(), "admin@JEEFray.fr",
 					"Confirmation de la commande", text);
@@ -179,6 +179,7 @@ public class ClientController implements Serializable {
 
 	public String orderDetails(Long orderID) {
 		selectedOrder = orderService.find(orderID);
+		System.out.println("here");
 		return "cmdDetails";
 	}
 	
@@ -204,7 +205,7 @@ public class ClientController implements Serializable {
 				+ c.getId() + "'>Valider votre compte</a>";
 
 		SendMail.send(c.getMail(), "admin@JEEFray.fr",
-				"Validation de l'inscription ï¿½ JEEFray", text);
+				"Validation de l'inscription £ JEEFray", text);
 
 		return "subscription";
 	}
@@ -216,14 +217,14 @@ public class ClientController implements Serializable {
 			File targetFolder = new File(s);
 			
 			for (File f : targetFolder.listFiles()) {
-				if (f.getName().contains(currentClient.getId().toString() + "ï¿½")) {
+				if (f.getName().contains(currentClient.getId().toString() + "£")) {
 					f.delete();
 				}
 			}
 			
 			InputStream inputStream = event.getFile().getInputstream();
 			OutputStream out = new FileOutputStream(new File(targetFolder,
-					currentClient.getId().toString() + "ï¿½"
+					currentClient.getId().toString() + "£"
 							+ event.getFile().getFileName()));
 			int read = 0;
 			byte[] bytes = new byte[1024];
@@ -246,9 +247,12 @@ public class ClientController implements Serializable {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		String s = context.getRealPath("resources/imagesAccount/"); 
 		File fDir = new File(s);
-		for (File f : fDir.listFiles()) {
-			if (f.getName().contains(currentClient.getId().toString() + "ï¿½")) {
-				imageClient += f.getName();
+		if(fDir.listFiles() != null)
+		{
+			for (File f : fDir.listFiles()) {
+				if (f.getName().contains(currentClient.getId().toString() + "£")) {
+					imageClient += f.getName();
+				}
 			}
 		}
 		

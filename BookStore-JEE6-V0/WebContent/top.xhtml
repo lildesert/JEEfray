@@ -13,7 +13,7 @@
 		</div>
 		<div style="float: right; display:inline-block;">
 			<dgc:localeChooser />
-			<h:panelGrid columns="3">
+			<h:panelGrid columns="4">
 				<h:panelGroup>
 					<h:outputText value="Votre panier: " />
 					<h:outputText value="#{clientController.order.size}" />
@@ -31,8 +31,7 @@
 						immediate="true" />
 				</h:panelGroup>
 				<h:commandLink action="cart" value="#{strings['button.goToCart']}" />
-				<h:commandLink action="subscribe"
-					value="#{strings['button.subscription']}" />
+				<h:commandLink action="subscribe" value="#{strings['button.subscription']}" style="" />
 			</h:panelGrid>
 		</div>
 	</h:form>

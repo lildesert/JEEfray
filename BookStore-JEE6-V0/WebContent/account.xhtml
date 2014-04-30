@@ -12,21 +12,6 @@
 	<ui:define name="content">
 		<h:form id="accountForm">
 			Login : <h:outputText value="#{clientController.currentClient.login}" />
-			<br />
-			<br />
-
-			<h:form enctype="multipart/form-data">
-				Ajoutez ou changez votre avatar :
-				<br /><br />
-				
-				<img src="#{clientController.image}" title="Avatar" cache="false" width="200" height="150" />
-				<br /><br />
-				
-				<p:fileUpload mode="advanced"
-					fileUploadListener="#{clientController.handleFileUpload}"
-					allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"
-					auto="true" style="width: 200px;" />
-			</h:form>
 
 			<br />
 			<br />
@@ -54,6 +39,24 @@
 						image="resources/icons/24/next-icon.png" />
 				</p:column>
 			</p:dataTable>
+		</h:form>
+		<br />
+		<br />
+
+		<h:form enctype="multipart/form-data">
+				Ajoutez ou changez votre avatar :
+				<br />
+			<br />
+
+			<img src="#{clientController.image}" title="Avatar" cache="false"
+				width="200" height="150" />
+			<br />
+			<br />
+
+			<p:fileUpload mode="advanced"
+				fileUploadListener="#{clientController.handleFileUpload}"
+				allowTypes="/(\.|\/)(gif|jpg|jpeg|gif|png|PNG|GIF|JPG|JPEG)$/"
+				auto="true" style="width: 200px;" />
 		</h:form>
 	</ui:define>
 </ui:composition>
