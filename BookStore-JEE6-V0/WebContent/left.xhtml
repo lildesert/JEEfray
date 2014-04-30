@@ -5,10 +5,9 @@
 	  	
 	  	<p:autoComplete value="#{bookController.text}" completeMethod="#{bookController.complete}">
 	  	</p:autoComplete>
-	  	
+		<!-- Pour la recherche (sous Windows au moins, respecter la casse) -->
 	  	<h:commandButton action="#{bookController.searchBook()}" value="#{strings['button.search']}" />
 	  	<br /><br />
-	  		  	
 	  	<h:dataTable value="#{categoryController.categoryList}" var="category">
 		  <f:facet name="header">Category</f:facet>
 		  <h:column>
