@@ -4,6 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -80,7 +83,12 @@ public class BookController implements Serializable {
 	
 	public List<Book> hightScore(){
 		Map<String, Object> param = new HashMap<>();
-		//param.put("like", text);
+		
+		Calendar cal = new GregorianCalendar();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_MONTH, -30);
+		param.put("date", cal.getTime());
+		
 		selectedBooks = bookService. findWithNamedQuery("Book.hightScore", param);
 		return selectedBooks;
 	}

@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQuery(name = "Book.findByCategory", query = "Select b From Book b where b.category = :category"),
 @NamedQuery(
 	name = "Book.hightScore", 
-	query = "Select b From Book b where b.id In (Select oi.id From OrderItem oi inner join Order o on o.id = oi.order where o.date between CURRENT_DATE and CURRENT_DATE order by count(*) DESC)")
+	query = "Select oi.book, count(oi.id) From OrderItem oi, oi.book b, oi.order o where o.id = :order AND b.id = :book AND o.date between :date and CURRENT_DATE GROUP BY b, oi.id Order by count(oi.id) DESC")
 })
 
 @XmlRootElement
