@@ -22,7 +22,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
 @NamedQuery(name = "Book.findAll", query = "Select b From Book b"),
 @NamedQuery(name = "Book.findLikeOnTitle", query = "Select b From Book b where b.title like :like"),
-@NamedQuery(name = "Book.findByCategory", query = "Select b From Book b where b.category = :category")
+@NamedQuery(name = "Book.findByCategory", query = "Select b From Book b where b.category = :category"),
+@NamedQuery(
+	name = "Book.hightScore", 
+	query = "Select b From Book b where b.id In (Select oi.id From OrderItem oi inner join Order o on o.id = oi.order where o.date between CURRENT_DATE and CURRENT_DATE order by count(*) DESC)")
 })
 
 @XmlRootElement

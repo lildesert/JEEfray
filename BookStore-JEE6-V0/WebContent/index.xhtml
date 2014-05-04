@@ -10,4 +10,16 @@
   <ui:define name="content">
     Bienvenue dans notre boutique 
    </ui:define>
+   <ui:define name="content">
+		<h:form id="categoryForm">
+		   <h:dataTable value="#{bookController.hightScore()}" var="book">
+				<f:facet name="header">Les 10 livres les plus vendus ces 30 derniers jours !</f:facet>
+				<h:column>
+					<h:commandLink action="#{bookController.selectBook(book.id)}">
+						<h:outputText value="#{book.title}" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+   		</h:form>
+	</ui:define>
 </ui:composition>

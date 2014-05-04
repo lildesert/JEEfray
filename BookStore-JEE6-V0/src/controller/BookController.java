@@ -78,6 +78,13 @@ public class BookController implements Serializable {
 	    return content;
 	}
 	
+	public List<Book> hightScore(){
+		Map<String, Object> param = new HashMap<>();
+		//param.put("like", text);
+		selectedBooks = bookService. findWithNamedQuery("Book.hightScore", param);
+		return selectedBooks;
+	}
+	
 	public String searchBook() {
 		String tmp = text;
 		text = "%" + text.trim() + "%";
