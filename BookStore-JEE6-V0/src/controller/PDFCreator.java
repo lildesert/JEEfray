@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 public class PDFCreator {
 	
 	private static String FILE = "test.pdf";
@@ -26,10 +28,13 @@ public class PDFCreator {
 	List<OrderItem> oItems;
 	Document document;
 	BigDecimal total;
+	HttpServletResponse response;
 	
-	public PDFCreator(Order o){
+	public PDFCreator(Order o, HttpServletResponse r){
 		this.total = o.getTotal();
 		this.oItems = o.getItems();
+		response = r;
+		r.setContentType("application/pdf");
 	}
 	
 	private void addMetaData() {
@@ -41,11 +46,12 @@ public class PDFCreator {
 	public void createPDF() {
 		try {
 	      document = new Document();
-	      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+	      PdfWriter.getInstance(document, response.getOutputStream());
 	      document.open();
 	      addMetaData();
 	      addContentPage();
 	      document.close();
+	      
 	    } catch (Exception e) {
 	      e.printStackTrace();
 	    }
@@ -61,7 +67,7 @@ public class PDFCreator {
 		page.add(createTable());
 		
 		addEmptyLine(page, 1);
-		page.add(new Paragraph("Facture Ã©mise le : " + new Date(), smallBold));
+		page.add(new Paragraph("Facture émise le : " + new Date(), smallBold));
 		
 		document.add(page);
   	}
@@ -70,8 +76,8 @@ public class PDFCreator {
 	        PdfPTable table = new PdfPTable(4);
 	        
 	        // Titre de chaque colonne
-	        table.addCell("RÃ©fÃ©rence");
-	        table.addCell("QuantitÃ©");
+	        table.addCell("Référence");
+	        table.addCell("Quantitée");
 	        table.addCell("Prix");
 	        table.addCell("Total");
 	        table.completeRow();

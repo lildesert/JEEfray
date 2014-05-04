@@ -13,6 +13,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
@@ -178,12 +179,6 @@ public class ClientController implements Serializable {
 		return "cmdDetails";
 	}
 	
-	public void getBill(Long orderID) {
-		selectedOrder = orderService.find(orderID);
-		PDFCreator pc = new PDFCreator(selectedOrder);
-		pc.createPDF();
-	}
-	
 	public String subscribe() {
 		Client c = new Client();
 		c.setLogin(subForm.getLogin());
@@ -204,7 +199,15 @@ public class ClientController implements Serializable {
 
 		return "subscription";
 	}
-
+	
+	public void getBill(Long orderID){
+		selectedOrder = orderService.find(orderID);
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletResponse r = (HttpServletResponse) context.getResponse();
+		PDFCreator pc = new PDFCreator(this.selectedOrder, r);
+		pc.createPDF();
+	}
+	
 	public void handleFileUpload(FileUploadEvent event) {
 		try {
 			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

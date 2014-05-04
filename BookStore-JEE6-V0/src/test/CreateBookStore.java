@@ -40,7 +40,7 @@ public class CreateBookStore {
     em.persist(category1);
 
     Category category2 = new Category();
-    category2.setTitle("LittÃ©rature");
+    category2.setTitle("Littérature");
     em.persist(category2);
 
     Author author1 = new Author();

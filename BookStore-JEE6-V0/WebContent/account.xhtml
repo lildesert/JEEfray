@@ -38,6 +38,11 @@
 						action="#{clientController.orderDetails(order.id)}"
 						image="resources/icons/24/next-icon.png" />
 				</p:column>
+				<p:column>
+					<h:commandButton
+						action="#{clientController.getBill(order.id)}"
+						image="resources/icons/icon_pdf.png" />
+				</p:column>
 			</p:dataTable>
 		</h:form>
 		<br />
