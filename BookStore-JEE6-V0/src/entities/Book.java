@@ -30,11 +30,11 @@ public class Book extends Persistent {
   private String isbn;
   private String title = "";
   private Category category;
-  private java.math.BigDecimal price = new BigDecimal(0);;
+  private java.math.BigDecimal price = new BigDecimal(0);
   private java.util.Date date = new Date();
   private List<Author> authors;
   private byte[] photo;
-  private List<OrderItem> orderItems = new ArrayList();;
+  private List<OrderItem> orderItems = new ArrayList();
 
   public Book() {
     authors = new ArrayList();
