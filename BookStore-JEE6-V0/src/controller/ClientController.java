@@ -156,14 +156,14 @@ public class ClientController implements Serializable {
 			// Envoi du mail de confirmation
 			String newLine = System.getProperty("line.separator");
 
-			String text = "Information sur la commande n£"
+			String text = "Information sur la commande n°"
 					+ order.getId().toString() + " : " + newLine + newLine;
 			for (OrderItem o : order.getItems()) {
 				text += o.getBook().getTitle() + " " + o.getTotal() + newLine;
 			}
 			text += "Montant total de la commande : "
 					+ order.getTotal().toString() + newLine;
-			text += "Merci d'avoir pass£ commande via notre boutique !";
+			text += "Merci d'avoir passé commande via notre boutique !";
 
 			SendMail.send(currentClient.getMail(), "admin@JEEFray.fr",
 					"Confirmation de la commande", text);
@@ -195,7 +195,7 @@ public class ClientController implements Serializable {
 				+ c.getId() + "'>Valider votre compte</a>";
 
 		SendMail.send(c.getMail(), "admin@JEEFray.fr",
-				"Validation de l'inscription £ JEEFray", text);
+				"Validation de l'inscription à JEEFray", text);
 
 		return "subscription";
 	}
