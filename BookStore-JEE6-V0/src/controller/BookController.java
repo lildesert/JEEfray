@@ -36,6 +36,8 @@ public class BookController implements Serializable {
 		
 	private List<Book> selectedBooks;
 	
+	private List<Book> bestSeller;
+	
 	@Inject
 	private SearchForm searchForm;
 	
@@ -84,7 +86,7 @@ public class BookController implements Serializable {
 	}
 	
 	public List<Book> highScore(){
-		selectedBooks = new LinkedList<Book>();
+		bestSeller = new LinkedList<Book>();
 		Map<String, Object> param = new HashMap<>();
 		
 		Calendar cal = new GregorianCalendar();
@@ -103,10 +105,10 @@ public class BookController implements Serializable {
 			id = (Long) tab[0];
 			count = (Long) tab[1];
 			
-			selectedBooks.add(bookService.find(id));
+			bestSeller.add(bookService.find(id));
 		}
 		
-		return selectedBooks;
+		return bestSeller;
 	}
 	
 	public String searchBook() {

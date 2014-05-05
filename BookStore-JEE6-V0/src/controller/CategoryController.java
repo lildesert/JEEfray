@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import entities.Book;
 import entities.Category;
 import model.CategoryService;
 
@@ -39,6 +40,11 @@ public class CategoryController implements Serializable {
 		}
 		
 		return "category";
+	}
+	
+	public List<Book> getBookList()
+	{
+		return selectedCategory.getBooks();
 	}
 	
 }

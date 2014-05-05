@@ -13,7 +13,7 @@
 		<h:form id="categoryForm">
 			<h:outputText value="#{categoryController.selectedCategory.title}" />
 
-			<h:dataTable value="#{categoryController.selectedBooks}" var="book">
+			<h:dataTable value="#{categoryController.bookList}" var="book">
 				<f:facet name="header">Livres</f:facet>
 				<h:column>
 					<h:commandLink action="#{bookController.selectBook(book.id)}">
