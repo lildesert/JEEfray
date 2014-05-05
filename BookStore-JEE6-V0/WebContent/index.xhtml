@@ -12,8 +12,8 @@
    </ui:define>
    <ui:define name="content">
 		<h:form id="categoryForm">
-		   <h:dataTable value="#{bookController.hightScore()}" var="book">
-				<f:facet name="header">Les 10 livres les plus vendus ces 30 derniers jours !</f:facet>
+		   <h:dataTable value="#{bookController.highScore()}" var="book">
+				<f:facet name="header">Les livres les plus vendus ces 30 derniers jours !</f:facet>
 				<h:column>
 					<h:commandLink action="#{bookController.selectBook(book.id)}">
 						<h:outputText value="#{book.title}" />

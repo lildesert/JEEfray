@@ -9,8 +9,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -81,7 +83,8 @@ public class BookController implements Serializable {
 	    return content;
 	}
 	
-	public List<Book> hightScore(){
+	public List<Book> highScore(){
+		selectedBooks = new LinkedList<Book>();
 		Map<String, Object> param = new HashMap<>();
 		
 		Calendar cal = new GregorianCalendar();
@@ -89,7 +92,20 @@ public class BookController implements Serializable {
 		cal.add(Calendar.DAY_OF_MONTH, -30);
 		param.put("date", cal.getTime());
 		
-		selectedBooks = bookService. findWithNamedQuery("Book.hightScore", param);
+		Vector ar = new Vector<>();
+		ar = (Vector) bookService.findWithNamedQuery("Book.highScore", param);
+		
+		Object[] tab;
+		Long id;
+		Long count;
+		for (Object o : ar) {
+			tab = (Object[])o;
+			id = (Long) tab[0];
+			count = (Long) tab[1];
+			
+			selectedBooks.add(bookService.find(id));
+		}
+		
 		return selectedBooks;
 	}
 	

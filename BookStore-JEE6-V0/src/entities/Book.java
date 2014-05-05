@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQuery(name = "Book.findLikeOnTitle", query = "Select b From Book b where b.title like :like"),
 @NamedQuery(name = "Book.findByCategory", query = "Select b From Book b where b.category = :category"),
 @NamedQuery(
-	name = "Book.hightScore", 
-	query = "Select oi.book, count(oi.id) From OrderItem oi, oi.book b, oi.order o where o.id = :order AND b.id = :book AND o.date between :date and CURRENT_DATE GROUP BY b, oi.id Order by count(oi.id) DESC")
+	name = "Book.highScore", 
+	query = "SELECT b.id, count(oi.id) as c FROM OrderItem oi JOIN oi.order o JOIN oi.book b WHERE o.date between :date and CURRENT_DATE GROUP BY b.id ORDER BY c DESC")
 })
 
 @XmlRootElement
